@@ -1,9 +1,5 @@
 import { attr, css, FASTElement, html } from "@microsoft/fast-element";
-import {
-  buttonBorderRadius,
-  buttonSizes,
-  buttonVariants,
-} from "./design-tokens";
+import { buttonTokens } from "./design-tokens";
 
 export class Button extends FASTElement {
   @attr({ mode: "reflect" })
@@ -20,49 +16,51 @@ const styles = css`
 
   button {
     border: none;
-    border-radius: ${(x) => buttonBorderRadius.getValueFor(x) + "px"};
+    border-radius: ${(x) => buttonTokens.borderRadius.getValueFor(x) + "px"};
     cursor: pointer;
     font-family: inherit;
-    transition: all 0.2s ease-in-out;
   }
 
   /* 베리언트별 스타일 */
   button.primary {
-    background: ${(x) => buttonVariants.primary.background.getValueFor(x)};
-    color: ${(x) => buttonVariants.primary.color.getValueFor(x)};
+    background: ${(x) =>
+      buttonTokens.variants.primary.background.getValueFor(x)};
+    color: ${(x) => buttonTokens.variants.primary.color.getValueFor(x)};
   }
 
   button.primary:hover {
-    background: ${(x) => buttonVariants.primary.hoverBackground.getValueFor(x)};
+    background: ${(x) =>
+      buttonTokens.variants.primary.hoverBackground.getValueFor(x)};
   }
 
   button.secondary {
-    background: ${(x) => buttonVariants.secondary.background.getValueFor(x)};
-    color: ${(x) => buttonVariants.secondary.color.getValueFor(x)};
+    background: ${(x) =>
+      buttonTokens.variants.secondary.background.getValueFor(x)};
+    color: ${(x) => buttonTokens.variants.secondary.color.getValueFor(x)};
   }
 
   button.secondary:hover {
     background: ${(x) =>
-      buttonVariants.secondary.hoverBackground.getValueFor(x)};
+      buttonTokens.variants.secondary.hoverBackground.getValueFor(x)};
   }
 
   /* 크기별 스타일 */
   button.small {
-    height: ${(x) => buttonSizes.small.height.getValueFor(x) + "px"};
-    padding: ${(x) => buttonSizes.small.padding.getValueFor(x)};
-    font-size: ${(x) => buttonSizes.small.fontSize.getValueFor(x)};
+    height: ${(x) => buttonTokens.sizes.small.height.getValueFor(x) + "px"};
+    padding: ${(x) => buttonTokens.sizes.small.padding.getValueFor(x)};
+    font-size: ${(x) => buttonTokens.sizes.small.fontSize.getValueFor(x)};
   }
 
   button.medium {
-    height: ${(x) => buttonSizes.medium.height.getValueFor(x) + "px"};
-    padding: ${(x) => buttonSizes.medium.padding.getValueFor(x)};
-    font-size: ${(x) => buttonSizes.medium.fontSize.getValueFor(x)};
+    height: ${(x) => buttonTokens.sizes.medium.height.getValueFor(x) + "px"};
+    padding: ${(x) => buttonTokens.sizes.medium.padding.getValueFor(x)};
+    font-size: ${(x) => buttonTokens.sizes.medium.fontSize.getValueFor(x)};
   }
 
   button.large {
-    height: ${(x) => buttonSizes.large.height.getValueFor(x) + "px"};
-    padding: ${(x) => buttonSizes.large.padding.getValueFor(x)};
-    font-size: ${(x) => buttonSizes.large.fontSize.getValueFor(x)};
+    height: ${(x) => buttonTokens.sizes.large.height.getValueFor(x) + "px"};
+    padding: ${(x) => buttonTokens.sizes.large.padding.getValueFor(x)};
+    font-size: ${(x) => buttonTokens.sizes.large.fontSize.getValueFor(x)};
   }
 `;
 

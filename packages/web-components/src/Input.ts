@@ -30,7 +30,6 @@ const styles = css`
     border: 1px solid ${(x) => inputTokens.border.color.getValueFor(x)};
     background: ${(x) => inputTokens.background.default.getValueFor(x)};
     font-family: inherit;
-    transition: all 0.2s ease-in-out;
     width: 100%;
     box-sizing: border-box;
   }
@@ -94,31 +93,7 @@ const template = html<Input>`
       ?required="${(x) => x.required}"
       @input="${(x, c) => x.handleInput(c.event)}"
       @blur="${(x) => x.handleBlur()}"
-      data-error="${(x) => {
-        if (!x.getTouched()) {
-          return false;
-        }
-        const input = x.shadowRoot?.querySelector("input");
-        const value = input?.value || "";
-        return x.required ? !x.isValid && value.length === 0 : false;
-      }}"
-      data-validity="${(x) => {
-        if (!x.getTouched()) {
-          return JSON.stringify({
-            valid: true,
-            valueMissing: false,
-          });
-        }
-        const input = x.querySelector("input");
-        const value = input?.value || "";
-        const isValid = value.length > 0;
-
-        return JSON.stringify({
-          valid: isValid,
-          valueMissing: !isValid,
-        });
-      }}"
-      minlength="${(x) => (x.required ? 1 : 0)}"
+      data-error="${(x) => !x.isValid}"
     />
   </div>
 `;
@@ -133,18 +108,15 @@ export class Input extends FASTElement {
   @attr touched: boolean = false;
   @attr isValid: boolean = true;
 
-  private validate(): void {
-    const input = this.querySelector("input");
-    const value = input?.value || "";
-    this.isValid = value.length > 0;
-  }
-
   public handleInput(event: Event): void {
+    this.touched = true;
     const input = event.target as HTMLInputElement;
-    if (input.value.length > 0) {
-      this.touched = true;
-    }
     this.value = input.value;
+
+    if (this.touched) {
+      this.validate();
+    }
+
     this.$emit("change", this.value);
   }
 
@@ -153,8 +125,8 @@ export class Input extends FASTElement {
     this.validate();
   }
 
-  public getTouched(): boolean {
-    return this.touched;
+  private validate(): void {
+    this.isValid = !this.required || this.value.length > 0;
   }
 }
 

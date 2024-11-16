@@ -51,132 +51,116 @@ export const sizes = {
   },
 };
 
-export const buttonBorderRadius = DesignToken.create<number>(
-  "button-border-radius"
-).withDefault(4);
-
-export const buttonVariants = {
-  primary: {
-    background: DesignToken.create<string>(
-      "button-primary-background"
-    ).withDefault(colors.primary),
-    color: DesignToken.create<string>("button-primary-color").withDefault(
+// 공통 디자인 토큰
+export const commonTokens = {
+  borderRadius: DesignToken.create<number>("border-radius").withDefault(4),
+  colors: {
+    background: DesignToken.create<string>("background").withDefault(
       colors.white
     ),
-    hoverBackground: DesignToken.create<string>(
-      "button-primary-hover"
-    ).withDefault(colors.hover.primary),
-  },
-  secondary: {
-    background: DesignToken.create<string>(
-      "button-secondary-background"
-    ).withDefault(colors.gray[100]),
-    color: DesignToken.create<string>("button-secondary-color").withDefault(
-      colors.gray[600]
+    disabledBackground: DesignToken.create<string>(
+      "disabled-background"
+    ).withDefault(colors.gray[50]),
+    primary: DesignToken.create<string>("primary-color").withDefault(
+      colors.primary
     ),
-    hoverBackground: DesignToken.create<string>(
-      "button-secondary-hover"
-    ).withDefault(colors.hover.secondary),
-  },
-};
-
-export const buttonSizes = {
-  small: {
-    height: DesignToken.create<number>("button-height-small").withDefault(
-      sizes.height.small
+    secondary: DesignToken.create<string>("secondary-color").withDefault(
+      colors.gray[100]
     ),
-    padding: DesignToken.create<string>("button-padding-small").withDefault(
-      sizes.padding.small
-    ),
-    fontSize: DesignToken.create<string>("button-font-size-small").withDefault(
-      sizes.fontSize.small
-    ),
-  },
-  medium: {
-    height: DesignToken.create<number>("button-height-medium").withDefault(
-      sizes.height.medium
-    ),
-    padding: DesignToken.create<string>("button-padding-medium").withDefault(
-      sizes.padding.medium
-    ),
-    fontSize: DesignToken.create<string>("button-font-size-medium").withDefault(
-      sizes.fontSize.medium
-    ),
-  },
-  large: {
-    height: DesignToken.create<number>("button-height-large").withDefault(
-      sizes.height.large
-    ),
-    padding: DesignToken.create<string>("button-padding-large").withDefault(
-      sizes.padding.large
-    ),
-    fontSize: DesignToken.create<string>("button-font-size-large").withDefault(
-      sizes.fontSize.large
-    ),
-  },
-};
-
-export const inputTokens = {
-  borderRadius: DesignToken.create<number>("input-border-radius").withDefault(
-    4
-  ),
-  border: {
-    color: DesignToken.create<string>("input-border-color").withDefault(
+    border: DesignToken.create<string>("border-color").withDefault(
       colors.gray[300]
     ),
-    focusColor: DesignToken.create<string>(
-      "input-focus-border-color"
-    ).withDefault(colors.primary),
-    errorColor: DesignToken.create<string>(
-      "input-error-border-color"
-    ).withDefault(colors.red[600]),
+    error: DesignToken.create<string>("error-color").withDefault(
+      colors.red[600]
+    ),
+    text: {
+      primary: DesignToken.create<string>("text-primary").withDefault(
+        colors.white
+      ),
+      secondary: DesignToken.create<string>("text-secondary").withDefault(
+        colors.gray[600]
+      ),
+      placeholder: DesignToken.create<string>("text-placeholder").withDefault(
+        colors.gray[500]
+      ),
+    },
+    hover: {
+      primary: DesignToken.create<string>("hover-primary").withDefault(
+        colors.hover.primary
+      ),
+      secondary: DesignToken.create<string>("hover-secondary").withDefault(
+        colors.hover.secondary
+      ),
+    },
   },
-  sizes: {
+  sizing: {
     small: {
-      height: DesignToken.create<number>("input-height-small").withDefault(
+      height: DesignToken.create<number>("height-small").withDefault(
         sizes.height.small
       ),
-      padding: DesignToken.create<string>("input-padding-small").withDefault(
+      padding: DesignToken.create<string>("padding-small").withDefault(
         sizes.padding.small
       ),
-      fontSize: DesignToken.create<string>("input-font-size-small").withDefault(
+      fontSize: DesignToken.create<string>("font-size-small").withDefault(
         sizes.fontSize.small
       ),
     },
     medium: {
-      height: DesignToken.create<number>("input-height-medium").withDefault(
+      height: DesignToken.create<number>("height-medium").withDefault(
         sizes.height.medium
       ),
-      padding: DesignToken.create<string>("input-padding-medium").withDefault(
+      padding: DesignToken.create<string>("padding-medium").withDefault(
         sizes.padding.medium
       ),
-      fontSize: DesignToken.create<string>(
-        "input-font-size-medium"
-      ).withDefault(sizes.fontSize.medium),
+      fontSize: DesignToken.create<string>("font-size-medium").withDefault(
+        sizes.fontSize.medium
+      ),
     },
     large: {
-      height: DesignToken.create<number>("input-height-large").withDefault(
+      height: DesignToken.create<number>("height-large").withDefault(
         sizes.height.large
       ),
-      padding: DesignToken.create<string>("input-padding-large").withDefault(
+      padding: DesignToken.create<string>("padding-large").withDefault(
         sizes.padding.large
       ),
-      fontSize: DesignToken.create<string>("input-font-size-large").withDefault(
+      fontSize: DesignToken.create<string>("font-size-large").withDefault(
         sizes.fontSize.large
       ),
     },
   },
+};
+
+// 컴포넌트별 토큰은 공통 토큰을 참조
+export const buttonTokens = {
+  borderRadius: commonTokens.borderRadius,
+  variants: {
+    primary: {
+      background: commonTokens.colors.primary,
+      color: commonTokens.colors.text.primary,
+      hoverBackground: commonTokens.colors.hover.primary,
+    },
+    secondary: {
+      background: commonTokens.colors.secondary,
+      color: commonTokens.colors.text.secondary,
+      hoverBackground: commonTokens.colors.hover.secondary,
+    },
+  },
+  sizes: commonTokens.sizing,
+};
+
+export const inputTokens = {
+  borderRadius: commonTokens.borderRadius,
+  border: {
+    color: commonTokens.colors.border,
+    focusColor: commonTokens.colors.primary,
+    errorColor: commonTokens.colors.error,
+  },
+  sizes: commonTokens.sizing,
   background: {
-    default: DesignToken.create<string>("input-background").withDefault(
-      colors.white
-    ),
-    disabled: DesignToken.create<string>(
-      "input-disabled-background"
-    ).withDefault(colors.gray[50]),
+    default: commonTokens.colors.background,
+    disabled: commonTokens.colors.disabledBackground,
   },
   placeholder: {
-    color: DesignToken.create<string>("placeholder-color").withDefault(
-      colors.gray[500]
-    ),
+    color: commonTokens.colors.text.placeholder,
   },
 };
