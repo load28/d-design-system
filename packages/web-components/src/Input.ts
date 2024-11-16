@@ -83,7 +83,6 @@ const styles = css`
 
 const template = html<Input>`
   <div class="input-container">
-    ${(x) => x.touched}
     <input
       class="${(x) => x.size}"
       type="${(x) => x.type}"
