@@ -1,0 +1,15 @@
+{
+  "name": "@design-system/react",
+  "version": "1.0.0",
+  "dependencies": {
+    "@design-system/web-components": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@microsoft/fast-react-wrapper": "^0.3.25",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.0.0"
+  }
+}

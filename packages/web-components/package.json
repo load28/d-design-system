@@ -1,0 +1,11 @@
+{
+  "name": "@design-system/web-components",
+  "version": "1.0.0",
+  "dependencies": {
+    "@microsoft/fast-element": "^2.0.0"
+  },
+  "devDependencies": {
+    "@microsoft/fast-colors": "^5.3.1",
+    "@microsoft/fast-foundation": "^2.50.0"
+  }
+}

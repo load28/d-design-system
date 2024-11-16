@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "jsx": "react",
+    "esModuleInterop": true,
+    "paths": {
+      "@design-system/react": ["./packages/react-components/src"]
+    }
+  }
+}
