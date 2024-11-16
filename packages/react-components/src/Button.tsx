@@ -1,4 +1,4 @@
-import { Button as WebButton } from "@design-system/web-components/src/button/button";
+import { Button as WebButton } from "@design-system/web-components/src/button";
 import { provideReactWrapper } from "@microsoft/fast-react-wrapper";
 import React from "react";
 

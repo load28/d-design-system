@@ -3,14 +3,14 @@ import {
   buttonBorderRadius,
   buttonSizes,
   buttonVariants,
-} from "../design-tokens";
+} from "./design-tokens";
 
 export class Button extends FASTElement {
   @attr({ mode: "reflect" })
   variant: "primary" | "secondary" = "primary";
 
   @attr
-  size: "small" | "medium" | "large" = "medium";
+  size: "small" | "medium" | "large" = "small";
 }
 
 const styles = css`
